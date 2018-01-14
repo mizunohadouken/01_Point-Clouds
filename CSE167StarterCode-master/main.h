@@ -1,6 +1,7 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+
 #ifdef __APPLE__
 // If modern OpenGL replace gl.h with gl3.h
 #include <OpenGL/gl.h>
@@ -12,5 +13,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Window.h"
+
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
 
 #endif

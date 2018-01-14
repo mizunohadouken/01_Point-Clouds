@@ -14,19 +14,33 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <vector>
 
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <fstream>
+
 class OBJObject
 {
 private:
-std::vector<unsigned int> indices;
-std::vector<glm::vec3> vertices;
-std::vector<glm::vec3> normals;
-glm::mat4 toWorld;
+
+
+	//variables
+	std::vector<unsigned int> indices;
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec3> normals;
+	glm::mat4 toWorld;
+	float angle;
+
 
 public:
 	OBJObject(const char* filepath);
 
+	// methods
+	bool readvals(std::stringstream & s, const int numvals, float * values);
 	void parse(const char* filepath);
 	void draw();
+	void update();
+	void spin(float);
 };
 
 #endif

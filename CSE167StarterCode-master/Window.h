@@ -15,11 +15,15 @@
 #include <GLFW/glfw3.h>
 #include "Cube.h"
 
+#include "OBJObject.h"
+#include <vector>
+
 class Window
 {
 public:
 	static int width;
 	static int height;
+
 	static void initialize_objects();
 	static void clean_up();
 	static GLFWwindow* create_window(int width, int height);
@@ -27,6 +31,14 @@ public:
 	static void idle_callback();
 	static void display_callback(GLFWwindow*);
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+//	static std::vector<OBJObject*> v_objects;
+
+
+
+
+private:
+
 };
 
 #endif

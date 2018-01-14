@@ -83,6 +83,37 @@ void print_versions()
 
 int main(void)
 {
+	/////////////////////////////
+	/////////////////////////////
+	// TODO remove testing ground
+	/*
+	char filename[] = "objs\\bear.obj";
+
+	std::string str, cmd;
+	std::ifstream in;
+	in.open(filename);
+	std::cout << "Parsing: " << filename << "\n"; // TODO Remove, Don't need
+
+	if (in.is_open())
+	{
+		getline(in, str);
+		std::stringstream s(str);
+		s >> cmd;
+		std::cout << cmd;
+	}
+	else
+	{
+		std::cerr << "Unable to Open Input Data File " << filename << "\n";
+		throw 2;
+	}
+
+	std::cout << "\n";
+	*/
+	////////////////////////
+	//END TESTING GROUND////
+	//--------------------------------------------------
+
+
 	// Create the GLFW window
 	window = Window::create_window(640, 480);
 	// Print OpenGL and GLSL versions

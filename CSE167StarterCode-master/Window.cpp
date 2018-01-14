@@ -1,13 +1,33 @@
 #include "Window.h"
 
+#define DEBUG 0;
+
 const char* window_title = "GLFW Starter Project";
 Cube cube(5.0f);
+
+int object_number = 0;
 
 int Window::width;
 int Window::height;
 
+std::vector<OBJObject> v_objects;
+
+
 void Window::initialize_objects()
 {
+	// TODO parse all objects here, add bunny and dragon
+	OBJObject obj_bunny = OBJObject("objs\\bunny.obj");
+	OBJObject obj_bear = OBJObject("objs\\bear2.obj");
+	OBJObject obj_dragon = OBJObject("objs\\dragon1.obj");
+
+	v_objects.push_back(obj_bunny);
+	v_objects.push_back(obj_bear);
+	v_objects.push_back(obj_dragon);
+
+#if DEBUG
+	int x = v_objects.size();
+	std::cout << x;
+#endif
 }
 
 void Window::clean_up()
@@ -70,8 +90,22 @@ void Window::resize_callback(GLFWwindow* window, int width, int height)
 
 void Window::idle_callback()
 {
+	// TODO spin object
+
 	// Perform any updates as necessary. Here, we will spin the cube slightly.
-	cube.update();
+//	cube.update();
+	if (object_number == 0)
+	{
+		v_objects[0].update();
+	}
+	else if (object_number == 1)
+	{
+		v_objects[1].update();
+	}
+	else if (object_number == 2)
+	{
+		v_objects[2].update();
+	}
 }
 
 void Window::display_callback(GLFWwindow* window)
@@ -83,9 +117,32 @@ void Window::display_callback(GLFWwindow* window)
 	// Load the identity matrix
 	glLoadIdentity();
 	
-	// Render objects
-	cube.draw();
 
+	// TODO  change object to render
+	// Render objects
+//	cube.draw();
+	if (object_number == 0)
+	{
+		v_objects[0].draw();
+#if DEBUG
+		std::cout << "Object 1\n";
+#endif
+	}
+	else if (object_number == 1)
+	{
+		v_objects[1].draw();
+#if DEBUG
+		std::cout << "Object 2\n";
+#endif
+	}
+	else if (object_number == 2)
+	{
+		v_objects[2].draw();
+#if DEBUG
+		std::cout << "Object 3\n";;
+#endif
+	}
+	
 	// Gets events, including input such as keyboard and mouse or window resizing
 	glfwPollEvents();
 	// Swap buffers
@@ -103,5 +160,45 @@ void Window::key_callback(GLFWwindow* window, int key, int scancode, int action,
 			// Close the window. This causes the program to also terminate.
 			glfwSetWindowShouldClose(window, GL_TRUE);
 		}
+		
+		// TODO add key press actions for F1, F2, & F3 to display/render different OBJs
+		else if (key == GLFW_KEY_F1)
+		{
+			std::cout << "F1\n";
+			object_number = 0;
+		}
+		else if (key == GLFW_KEY_F2)
+		{
+			object_number = 1;
+		}
+		else if (key == GLFW_KEY_F3)
+		{
+			object_number = 2;
+		}
+		else if (key == GLFW_KEY_X)
+		{
+			
+		}
+		else if (key == GLFW_KEY_Y)
+		{
+
+		}
+		else if (key == GLFW_KEY_Z)
+		{
+
+		}
+		else if (key == GLFW_KEY_S)
+		{
+
+		}
+		else if (key == GLFW_KEY_O)
+		{
+
+		}
+		else if (key == GLFW_KEY_R)
+		{
+
+		}
+
 	}
 }
