@@ -28,7 +28,7 @@ private:
 	std::vector<unsigned int> indices;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normals;
-	glm::mat4 toWorld;
+	glm::mat4 toWorld, m_translate, m_rotate, m_scale, m_orbit;
 	float angle;
 
 
@@ -36,11 +36,17 @@ public:
 	OBJObject(const char* filepath);
 
 	// methods
-	bool readvals(std::stringstream & s, const int numvals, float * values);
+
 	void parse(const char* filepath);
 	void draw();
 	void update();
 	void spin(float);
+	void translation(glm::vec3 v_translate);
+	void scale(float scale_factor);
+	void rotation(float rotation_angle_deg, glm::vec3 rotation_axis);
+	void orbit(float rotation_angle_deg, glm::vec3 rotation_axis);
+	void reset_position();
+	void reset_orientation_scale();
 };
 
 #endif

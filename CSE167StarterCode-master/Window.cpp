@@ -4,7 +4,7 @@
 
 const char* window_title = "GLFW Starter Project";
 Cube cube(5.0f);
-
+  
 int object_number = 0;
 
 int Window::width;
@@ -91,21 +91,10 @@ void Window::resize_callback(GLFWwindow* window, int width, int height)
 void Window::idle_callback()
 {
 	// TODO spin object
-
 	// Perform any updates as necessary. Here, we will spin the cube slightly.
 //	cube.update();
-	if (object_number == 0)
-	{
-		v_objects[0].update();
-	}
-	else if (object_number == 1)
-	{
-		v_objects[1].update();
-	}
-	else if (object_number == 2)
-	{
-		v_objects[2].update();
-	}
+	v_objects[object_number].update();
+
 }
 
 void Window::display_callback(GLFWwindow* window)
@@ -117,31 +106,10 @@ void Window::display_callback(GLFWwindow* window)
 	// Load the identity matrix
 	glLoadIdentity();
 	
-
 	// TODO  change object to render
 	// Render objects
 //	cube.draw();
-	if (object_number == 0)
-	{
-		v_objects[0].draw();
-#if DEBUG
-		std::cout << "Object 1\n";
-#endif
-	}
-	else if (object_number == 1)
-	{
-		v_objects[1].draw();
-#if DEBUG
-		std::cout << "Object 2\n";
-#endif
-	}
-	else if (object_number == 2)
-	{
-		v_objects[2].draw();
-#if DEBUG
-		std::cout << "Object 3\n";;
-#endif
-	}
+	v_objects[object_number].draw();
 	
 	// Gets events, including input such as keyboard and mouse or window resizing
 	glfwPollEvents();
@@ -161,43 +129,53 @@ void Window::key_callback(GLFWwindow* window, int key, int scancode, int action,
 			glfwSetWindowShouldClose(window, GL_TRUE);
 		}
 		
-		// TODO add key press actions for F1, F2, & F3 to display/render different OBJs
-		else if (key == GLFW_KEY_F1)
-		{
-			std::cout << "F1\n";
-			object_number = 0;
-		}
-		else if (key == GLFW_KEY_F2)
-		{
-			object_number = 1;
-		}
-		else if (key == GLFW_KEY_F3)
-		{
-			object_number = 2;
-		}
+		// press F1, F2, & F3 to display/render different OBJs
+		else if (key == GLFW_KEY_F1){object_number = 0;}
+		else if (key == GLFW_KEY_F2){object_number = 1;}
+		else if (key == GLFW_KEY_F3){object_number = 2;}
+
+		// translate along x axis
 		else if (key == GLFW_KEY_X)
 		{
-			
+			if (mods == GLFW_MOD_SHIFT){v_objects[object_number].translation(glm::vec3(.5f, 0.f, 0.f));}
+			else{v_objects[object_number].translation(glm::vec3(-.5f, 0.f, 0.f));}
 		}
-		else if (key == GLFW_KEY_Y)
-		{
 
+		// translate along y axis
+		if (key == GLFW_KEY_Y)
+		{
+			if (mods == GLFW_MOD_SHIFT) { v_objects[object_number].translation(glm::vec3(0.f, 0.5f, 0.f));}
+			else { v_objects[object_number].translation(glm::vec3(0.f, -.5f, 0.f));}
 		}
+
+		// translate along z axis
 		else if (key == GLFW_KEY_Z)
 		{
-
+			if (mods == GLFW_MOD_SHIFT){v_objects[object_number].translation(glm::vec3(0.f, 0.f, -1.f));}
+			else{v_objects[object_number].translation(glm::vec3(0.f, 0.f, 1.f));}
 		}
+
+		// scale object
 		else if (key == GLFW_KEY_S)
 		{
-
+			if (mods == GLFW_MOD_SHIFT){v_objects[object_number].scale(1.5f);}
+			else{v_objects[object_number].scale(.5f);}
 		}
+
+		// orbit object about the z axis
 		else if (key == GLFW_KEY_O)
 		{
-
+			if (mods == GLFW_MOD_SHIFT) { v_objects[object_number].orbit(10.f, glm::vec3(0.f, 0.f, 1.f)); }
+			else { v_objects[object_number].orbit(10.f, glm::vec3(0.f, 0.f, -1.f)); }
 		}
+
+		// reset position or orientation/scale
 		else if (key == GLFW_KEY_R)
 		{
-
+			// upper case R resets scale and orientation
+			if (mods == GLFW_MOD_SHIFT) { v_objects[object_number].reset_orientation_scale(); }
+			// lower case r resets position
+			else { v_objects[object_number].reset_position(); }
 		}
 
 	}
