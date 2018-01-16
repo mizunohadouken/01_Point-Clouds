@@ -21,9 +21,13 @@
 class Window
 {
 public:
+	//variables
 	static int width;
 	static int height;
+	static float* pixels;
+	static bool b_rasterize;
 
+	// methods
 	static void initialize_objects();
 	static void clean_up();
 	static GLFWwindow* create_window(int width, int height);
@@ -32,13 +36,16 @@ public:
 	static void display_callback(GLFWwindow*);
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-//	static std::vector<OBJObject*> v_objects;
+	static void clearBuffer();
+	static void drawPoint(int x, int y, float r, float g, float b);
 
-
+	static void rasterize();
 
 
 private:
 
+	
 };
 
 #endif
+

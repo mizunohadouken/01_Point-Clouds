@@ -7,6 +7,7 @@ OBJObject::OBJObject(const char *filepath)
 	m_rotate = glm::mat4(1.0f);
 	m_scale = glm::mat4(1.0f);
 	m_orbit = glm::mat4(1.0f);
+	point_size = 1.f;
 	parse(filepath);
 	this->angle = 0.f;
 
@@ -79,9 +80,14 @@ void OBJObject::draw()
 	glPopMatrix();
 }
 
+void OBJObject::rasterize_object(glm::mat4 m_DPV)
+{
+
+}
+
 void OBJObject::update()
 {
-	spin(1.f);
+	//spin(1.f);
 }
 
 void OBJObject::spin(float deg)
@@ -122,4 +128,25 @@ void OBJObject::reset_orientation_scale()
 	glm::vec3 stored_translation = glm::vec3(toWorld[3][0], toWorld[3][1], toWorld[3][2]);
 	toWorld = glm::mat4(1.f);
 	translation(stored_translation);
+}
+
+void OBJObject::change_point_size(float point_size_change)
+{
+	point_size = point_size * point_size_change;
+	glPointSize(point_size);
+}
+
+glm::mat4 OBJObject::get_world_mat()
+{
+	return toWorld;
+}
+
+std::vector<glm::vec3> OBJObject::get_vertices_vec()
+{
+	return vertices;
+}
+
+std::vector<glm::vec3> OBJObject::get_normals_vec()
+{
+	return normals;
 }

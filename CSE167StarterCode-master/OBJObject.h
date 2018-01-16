@@ -23,14 +23,14 @@ class OBJObject
 {
 private:
 
-
+	/*
 	//variables
 	std::vector<unsigned int> indices;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normals;
 	glm::mat4 toWorld, m_translate, m_rotate, m_scale, m_orbit;
-	float angle;
-
+	float angle, point_size;
+*/
 
 public:
 	OBJObject(const char* filepath);
@@ -39,6 +39,8 @@ public:
 
 	void parse(const char* filepath);
 	void draw();
+	void rasterize_object(glm::mat4 m_DPV);
+
 	void update();
 	void spin(float);
 	void translation(glm::vec3 v_translate);
@@ -47,6 +49,18 @@ public:
 	void orbit(float rotation_angle_deg, glm::vec3 rotation_axis);
 	void reset_position();
 	void reset_orientation_scale();
+	void change_point_size(float point_size_change);
+	glm::mat4 get_world_mat();
+	std::vector<glm::vec3> get_vertices_vec();
+	std::vector<glm::vec3> get_normals_vec();
+
+	std::vector<unsigned int> indices;
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec3> normals;
+	glm::mat4 toWorld, m_translate, m_rotate, m_scale, m_orbit;
+	float angle, point_size;
+
+
 };
 
 #endif
