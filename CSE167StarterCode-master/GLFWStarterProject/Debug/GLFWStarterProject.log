@@ -1,0 +1,13 @@
+﻿  OBJObject.cpp
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(31): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(48): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1195): note: see declaration of 'fscanf'
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(54): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1195): note: see declaration of 'fscanf'
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(60): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1195): note: see declaration of 'fscanf'
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(22): warning C4101: 'z': unreferenced local variable
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(22): warning C4101: 'y': unreferenced local variable
+c:\users\andrew\desktop\courses\cse167 fall 2017\01_point clouds\cse167startercode-master\objobject.cpp(22): warning C4101: 'x': unreferenced local variable
+  GLFWStarterProject.vcxproj -> C:\Users\Andrew\Desktop\Courses\CSE167 Fall 2017\01_Point Clouds\CSE167StarterCode-master\Debug\GLFWStarterProject.exe

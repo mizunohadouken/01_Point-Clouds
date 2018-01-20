@@ -94,6 +94,16 @@ void OBJObject::draw()
 	glPushMatrix();
 	glMultMatrixf(&(toWorld[0][0]));
 
+	
+	glBegin(GL_TRIANGLES);
+	for (unsigned int i = 0; i < ((v_indices_norms.size()) / 2); ++i)
+	{
+		glColor3f(normals[v_indices_norms[i*2]].x, normals[v_indices_norms[i*2]].y, normals[v_indices_norms[i]].z);
+		glVertex3f(vertices[v_indices_norms[i*2]-1].x, vertices[v_indices_norms[i*2]-1].y, vertices[v_indices_norms[i*2]-1].z);
+	}
+
+
+/*
 	glBegin(GL_POINTS);
 	// Loop through all the vertices of this OBJ Object and render them
 	for (unsigned int i = 0; i < vertices.size(); ++i) 
@@ -101,6 +111,8 @@ void OBJObject::draw()
 		glColor3f(normals[i].x, normals[i].y, normals[i].z);
 		glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
 	}
+	*/
+
 	glEnd();
 
 	// Pop the save state off the matrix stack

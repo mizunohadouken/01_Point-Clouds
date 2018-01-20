@@ -23,8 +23,8 @@ void Window::initialize_objects()
 {
 	// TODO parse all objects here, add bunny and dragon
 	OBJObject obj_bunny = OBJObject("objs\\bunny.obj");
-	OBJObject obj_bear = OBJObject("objs\\bear.obj");
-	OBJObject obj_dragon = OBJObject("objs\\dragon.obj");
+	OBJObject obj_bear = OBJObject("objs\\bear_small.obj");
+	OBJObject obj_dragon = OBJObject("objs\\dragon1.obj");
 
 	v_objects.push_back(obj_bunny);
 	v_objects.push_back(obj_bear);
