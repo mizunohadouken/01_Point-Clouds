@@ -1,6 +1,6 @@
 #include "Window.h"
 
-#define DEBUG 0;
+
 
 const char* window_title = "GLFW Starter Project";
 Cube cube(5.0f);
@@ -24,7 +24,7 @@ void Window::initialize_objects()
 	// TODO parse all objects here, add bunny and dragon
 	OBJObject obj_bunny = OBJObject("objs\\bunny.obj");
 	OBJObject obj_bear = OBJObject("objs\\bear.obj");
-	OBJObject obj_dragon = OBJObject("objs\\dragon1.obj");
+	OBJObject obj_dragon = OBJObject("objs\\dragon.obj");
 
 	v_objects.push_back(obj_bunny);
 	v_objects.push_back(obj_bear);

@@ -22,6 +22,8 @@ void OBJObject::parse(const char *filepath)
 	float x, y, z;
 	float r, g, b;
 	int char1, char2;
+	char lookahead[256];
+	unsigned int point1, point2, point3, point4, point5, point6;
 	glm::vec3 temp_vec, temp_normal;
 
 
@@ -29,31 +31,57 @@ void OBJObject::parse(const char *filepath)
 	fp = fopen(filepath, "rb");
 	if (fp == NULL) { std::cerr << "error loading file" << std::endl; exit(-1); }
 
-	char1 = fgetc(fp);
-	char2 = fgetc(fp);
+	int comment_count = 0, vert_count = 0, norm_count = 0, face_count = 0;
 
-	while (char1 != EOF)
+	while ((char1 = fgetc(fp)) != EOF)
 	{
-		if ((char1 == 'v') && (char2 == ' '))
+		if (char1 == '#')
 		{
-			fscanf(fp, "%f %f %f %f %f %f ", &temp_vec.x, &temp_vec.y, &temp_vec.z, &r, &g, &b);
-			vertices.push_back(temp_vec);
+			fgets(lookahead, 256, fp);
+			comment_count++;
 		}
-		else if ((char1 == 'v') && (char2 == 'n'))
+		else
 		{
-			fscanf(fp, "%f %f %f", &temp_vec.x, &temp_vec.y, &temp_vec.z);
-			normals.push_back(temp_vec);
+			char2 = fgetc(fp);
+			if ((char1 == 'v') && (char2 == ' '))
+			{
+				fscanf(fp, "%f %f %f %f %f %f ", &temp_vec.x, &temp_vec.y, &temp_vec.z, &r, &g, &b);
+				vertices.push_back(temp_vec);
+				vert_count++;
+			}
+			else if ((char1 == 'v') && (char2 == 'n'))
+			{
+				fscanf(fp, "%f %f %f", &temp_vec.x, &temp_vec.y, &temp_vec.z);
+				normals.push_back(temp_vec);
+				norm_count++;
+			}
+			else if ((char1 == 'f') && (char2 == ' '))
+			{
+				fscanf(fp, "%u//%u %u//%u %u//%u", &point1, &point2, &point3, &point4, &point5, &point6);
+				v_indices_norms.push_back(point1);
+				v_indices_norms.push_back(point2);
+				v_indices_norms.push_back(point3);
+				v_indices_norms.push_back(point4);
+				v_indices_norms.push_back(point5);
+				v_indices_norms.push_back(point6);
+				face_count++;
+			}
 		}
-		else if (char1 == '#')
-		{
-			std::cout << "it's a comment" << std::endl;
-		}
-		char1 = fgetc(fp);
-		char2 = fgetc(fp);
 	}
+	
+	printf("Vertices: %lu\nNormals: %lu\nIndices: %lu\n", vertices.size(), normals.size(), v_indices_norms.size());
+	printf("# Vert lines: %i\n", vert_count);
+	printf("# Norm lines: %i\n", norm_count);
+	printf("# Face lines: %i\n", face_count);
 
+	printf("# Comment lines: %i\n\n", comment_count);
 
-	printf("Vertices: %lu\nNormals: %lu\n\n", vertices.size(), normals.size());
+	/*
+	for (int i = 0; i < v_indices_norms.size() / 2; i++)
+	{
+		printf("Vertex index: %u w/ normal index: %u\n", v_indices_norms[2 * i], v_indices_norms[2 * i + 1]);
+	}
+	*/
 
 	fclose(fp);
 }
@@ -87,7 +115,7 @@ void OBJObject::rasterize_object(glm::mat4 m_DPV)
 
 void OBJObject::update()
 {
-	//spin(1.f);
+	spin(1.f);
 }
 
 void OBJObject::spin(float deg)

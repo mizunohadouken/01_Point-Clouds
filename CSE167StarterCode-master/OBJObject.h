@@ -54,7 +54,7 @@ public:
 	std::vector<glm::vec3> get_vertices_vec();
 	std::vector<glm::vec3> get_normals_vec();
 
-	std::vector<unsigned int> indices;
+	std::vector<unsigned int> v_indices_norms;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normals;
 	glm::mat4 toWorld, m_translate, m_rotate, m_scale, m_orbit;
