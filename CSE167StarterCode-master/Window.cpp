@@ -1,5 +1,6 @@
 #include "Window.h"
 
+#define RENDER_ONLY_ONE 0
 
 
 const char* window_title = "GLFW Starter Project";
@@ -22,9 +23,15 @@ struct Color    // generic color class
 void Window::initialize_objects()
 {
 	// TODO parse all objects here, add bunny and dragon
-	OBJObject obj_bunny = OBJObject("objs\\bunny.obj");
-	OBJObject obj_bear = OBJObject("objs\\bear_small.obj");
+#if RENDER_ONLY_ONE
+	OBJObject obj_bunny = OBJObject("objs\\bear.obj");
+	OBJObject obj_bear = OBJObject("objs\\bunny1.obj");
 	OBJObject obj_dragon = OBJObject("objs\\dragon1.obj");
+#else
+	OBJObject obj_bunny = OBJObject("objs\\bunny.obj");
+	OBJObject obj_bear = OBJObject("objs\\bear.obj");
+	OBJObject obj_dragon = OBJObject("objs\\dragon.obj");
+#endif
 
 	v_objects.push_back(obj_bunny);
 	v_objects.push_back(obj_bear);
@@ -187,6 +194,8 @@ void Window::key_callback(GLFWwindow* window, int key, int scancode, int action,
 		// scale object
 		else if (key == GLFW_KEY_S)
 		{
+	//			if (mods == GLFW_MOD_SHIFT) { v_objects[object_number].scale_factor = v_objects[object_number].scale_factor *1.5f; }
+	//			else { v_objects[object_number].scale_factor = v_objects[object_number].scale_factor *.5f;  }
 			if (mods == GLFW_MOD_SHIFT) { v_objects[object_number].scale(1.5f); }
 			else { v_objects[object_number].scale(.5f); }
 		}
