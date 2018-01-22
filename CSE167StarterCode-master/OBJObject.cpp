@@ -83,6 +83,20 @@ void OBJObject::parse(const char *filepath)
 		}
 	}
 
+
+	//calculate default scale within the window
+	float x_range = abs(out_x_max - out_x_min);
+	float y_range = abs(out_y_max - out_y_min);
+	float z_range = abs(out_z_max - out_z_min);
+
+	float max_scale = std::max(x_range, (std::max(y_range, z_range)));
+	float scale_to_one = (10.f / max_scale);
+	this->m_default_scale = glm::scale(glm::mat4(1.f), glm::vec3(scale_to_one));
+	toWorld = toWorld * m_default_scale;
+
+	/////////////
+
+
 	// modify object to world matrix to center object
 	float x_center, y_center, z_center;
 	x_center = (out_x_max + out_x_min) / 2.f;
@@ -92,11 +106,11 @@ void OBJObject::parse(const char *filepath)
 
 	glm::mat4 m_translation = glm::translate(glm::mat4(1.f), translation_to_center_vec);
 	this->m_center_obj = m_translation * this->m_center_obj;
-	toWorld = m_center_obj * toWorld;
+	toWorld = toWorld * m_center_obj;
 	
+	/////////////
 	this->m_center_obj_inv = glm::inverse(m_center_obj);
-	/////////////
-	/////////////
+	////////////
 	
 	printf("Vertices: %lu\nNormals: %lu\nIndices: %lu\n", vertices.size(), normals.size(), v_indices_norms.size());
 	printf("# Vert lines: %i\n", vert_count);
@@ -254,7 +268,9 @@ void OBJObject::reset_orientation_scale()
 	toWorld = toWorld * m_center_obj_inv;
 	glm::vec3 stored_translation = glm::vec3(toWorld[3][0], toWorld[3][1], toWorld[3][2]);
 	toWorld = glm::mat4(1.f);
+	toWorld = toWorld * m_default_scale;
 	translation(stored_translation);
+
 	toWorld = toWorld * m_center_obj;
 }
 

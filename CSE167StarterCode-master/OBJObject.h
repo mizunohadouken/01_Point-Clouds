@@ -18,6 +18,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 class OBJObject
 {
@@ -58,7 +59,7 @@ public:
 	std::vector<unsigned int> v_indices_norms;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normals;
-	glm::mat4 toWorld, m_transformation, m_translate, m_rotate, m_scale, m_orbit, m_center_obj, m_center_obj_inv;
+	glm::mat4 toWorld, m_transformation, m_translate, m_rotate, m_scale, m_orbit, m_center_obj, m_center_obj_inv, m_default_scale;
 	float angle, point_size, scale_factor;
 	glm::vec3 v_translation;
 
