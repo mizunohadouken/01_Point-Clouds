@@ -11,8 +11,8 @@
 ..\OBJObject.cpp(34): warning C4101: 'y': unreferenced local variable
 ..\OBJObject.cpp(34): warning C4101: 'x': unreferenced local variable
   Generating code
-  4 of 340 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  3 of 340 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   GLFWStarterProject.vcxproj -> C:\Users\Andrew\Desktop\Courses\CSE167 Fall 2017\01_Point Clouds\CSE167StarterCode-master\Release\GLFWStarterProject.exe

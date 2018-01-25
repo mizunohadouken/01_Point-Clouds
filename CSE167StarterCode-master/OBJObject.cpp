@@ -73,11 +73,11 @@ void OBJObject::parse(const char *filepath)
 			{
 				fscanf(fp, "%u//%u %u//%u %u//%u", &point1, &point2, &point3, &point4, &point5, &point6);
 				v_indices_norms.push_back(point1);
-				v_indices_norms.push_back(point2);
+			//	v_indices_norms.push_back(point2);
 				v_indices_norms.push_back(point3);
-				v_indices_norms.push_back(point4);
+			//	v_indices_norms.push_back(point4);
 				v_indices_norms.push_back(point5);
-				v_indices_norms.push_back(point6);
+			//	v_indices_norms.push_back(point6);
 				face_count++;
 			}
 		}
@@ -146,13 +146,13 @@ void OBJObject::draw()
 
 	
 	glBegin(GL_TRIANGLES);
-	for (unsigned int i = 0; i < ((v_indices_norms.size()) / 2); ++i)
+	for (unsigned int i = 0; i < v_indices_norms.size(); ++i)
 	{
-		glColor3f(normals[v_indices_norms[i*2]].x, normals[v_indices_norms[i*2]].y, normals[v_indices_norms[i]].z);
-		glVertex3f(vertices[v_indices_norms[i*2]-1].x, vertices[v_indices_norms[i*2]-1].y, vertices[v_indices_norms[i*2]-1].z);
+		glColor3f(normals[v_indices_norms[i] - 1].x, normals[v_indices_norms[i] - 1].y, normals[v_indices_norms[i]-1].z);
+		glVertex3f(vertices[v_indices_norms[i]-1].x, vertices[v_indices_norms[i] - 1].y, vertices[v_indices_norms[i] - 1].z);
 	}
 
-/*
+/* Render Points
 	glBegin(GL_POINTS);
 	// Loop through all the vertices of this OBJ Object and render them
 	for (unsigned int i = 0; i < vertices.size(); ++i) 
